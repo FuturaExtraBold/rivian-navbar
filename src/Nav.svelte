@@ -9,7 +9,7 @@
       <div class="nav-button">R1S</div>
       <div class="nav-button">R1T</div>
       <div class="nav-button">R2</div>
-      <div class="nav-button">R3</div>
+      <div class="nav-button nav-button--active">R3</div>
       <div class="nav-button">Fleet</div>
     </div>
   </div>
@@ -18,8 +18,8 @@
   </div>
   <div class="nav-section nav-section--user">
     <ul class="nav-list nav-list--user">
-      <li><a href="/">Demo Drive</a></li>
-      <li><a href="/">Sign In</a></li>
+       <div class="nav-button nav-button--small-text nav-button--accent">Demo Drive</div>
+       <div class="nav-button nav-button--small-text">Sign In</div>
     </ul>
   </div>
 </nav>
@@ -34,6 +34,12 @@
     --color-nav-text-hover: #000;
     --color-nav-button-text: #fff;
     --color-nav-button-text-hover: #000;
+    --color-nav-button-active-text: #000;
+    --color-nav-button-active-text-hover: #fff;
+    --color-nav-button-active-bg: #fff;
+    --color-nav-button-active-bg-hover: #000;
+    --color-nav-button-accent-text: #000;
+    --color-nav-button-accent-bg: orange;
     --color-nav-button-bg: transparent;
     --color-nav-button-bg-hover: #eee;
     --color-nav-hamburger-bg: transparent;
@@ -52,6 +58,7 @@
     border-radius: 20px;
     padding: 0 20px;
     transition: all 0.2s ease-in-out;
+    position: relative;
   }
 
   .nav-section {
@@ -68,11 +75,11 @@
 
   .nav-section--logo h2 {
     margin: 0;
-    font-size: 1.5em;
-    font-weight: bold;
+    font-size: 1.7em;
+    font-weight: 900;
     color: var(--color-nav-text);
-    letter-spacing: 10px;
-    margin-right: -10px;
+    letter-spacing: 8px;
+    margin-right: -8px;
     transition: all 0.2s ease-in-out;
   }
 
@@ -117,9 +124,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: 500;
+    font-weight: 600;
     border-radius: 40px;
+    letter-spacing: -0.5px;
     cursor: pointer;
+  }
+
+  .nav-button--small-text {
+    font-size: 0.9em;
   }
 
   .nav-button:hover {
@@ -127,8 +139,24 @@
     background-color: var(--color-nav-button-bg-hover);
   }
 
+  .nav-button--accent {
+    color: var(--color-nav-button-accent-text);
+    background-color: var(--color-nav-button-accent-bg);
+  }
+
+  .nav-button--accent:hover {
+    color: var(--color-nav-button-accent-text);
+    background-color: var(--color-nav-button-accent-bg);
+  }
+
+  .nav-button--active {
+    color: var(--color-nav-text-hover);
+    background-color: var(--color-nav-button-bg-hover);
+  }
+
   .nav:hover {
     background-color: var(--color-nav-bg-hover);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
 
     .nav-section--logo h2 {
       color: var(--color-nav-text-hover);
@@ -136,6 +164,11 @@
 
     .nav-button {
       color: #000;
+    }
+
+    .nav-button--active {
+      color: var(--color-nav-button-active-text-hover);
+      background-color: var(--color-nav-button-active-bg-hover);
     }
   }
 </style>

@@ -40,6 +40,9 @@ body {
 #app {
   margin: 0 auto;
   width: 100%;
+  background-image: url("assets/R3.jpg");
+  background-size: cover;
+  background-position: top center;
 }
 
 @media (prefers-color-scheme: light) {
