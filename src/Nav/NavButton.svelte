@@ -4,7 +4,7 @@
 
   const navHovered = getContext('navHovered');
   let hovered = false;
-  const unsubscribe = navHovered.subscribe(value => hovered = value);
+  navHovered.subscribe(value => hovered = value);
 
   export let title = 'Button';
   export let className = '';
@@ -38,7 +38,7 @@
     justify-content: center;
     font-weight: 600;
     border-radius: 40px;
-    letter-spacing: -0.5px;
+    letter-spacing: -0.75px;
     cursor: pointer;
 
     &.hovered {
