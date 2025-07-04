@@ -42,7 +42,7 @@ body {
   width: 100%;
   background-image: url("assets/r3.avif");
   background-size: cover;
-  background-position: top center;
+  background-position: center;
 }
 
 @media (prefers-color-scheme: light) {

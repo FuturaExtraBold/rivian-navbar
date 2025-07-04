@@ -2,16 +2,19 @@
   console.log("Detail component loaded");
   export let open = false;
   export let title = '';
+  export let vehicleImage = null;
 </script>
 
 <div class="detail" class:open={open}>
+  <div class="detail-divider"></div>
   <div class="detail-content">
     <div class="detail-actions">
       <h1>Actions</h1>
-    </div>
-    <div class="detail-image">
       <h1>{title}</h1>
       <p>This is a placeholder for the detail view.</p>
+    </div>
+    <div class="detail-image">
+      <img src={vehicleImage} alt={title} />
     </div>
   </div>
 </div>
@@ -30,18 +33,19 @@
     > * {
       margin: 0;
     }
-    
-    &.open {
-      height: 400px;
-    }
   }
 
   .detail-content {
     display: flex;
-    gap: 20px;
     height: 100%;
     width: 100%;
-    border-top: 2px solid #eee;
+  }
+
+  .detail-divider {
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: #eee;
   }
 
   .detail-actions {
@@ -49,6 +53,27 @@
     flex-direction: column;
     padding: 20px;
     width: 400px;
-    border-right: 2px solid #eee;
+  }
+
+  .detail-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background-color: #eee;
+    
+    img {
+      max-width: 100%;
+      height: auto;
+      display: none;
+    }
+  }
+
+  .detail.open {
+    height: 400px;
+
+    .detail-image img {
+      display: block;
+    }
   }
 </style>
