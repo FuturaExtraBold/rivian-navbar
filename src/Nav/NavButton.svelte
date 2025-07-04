@@ -1,16 +1,39 @@
 <script>
   console.log('NavButton component loaded');
+  
+  // Is the nav hovered?
   import { getContext } from 'svelte';
-
   const navHovered = getContext('navHovered');
   let hovered = false;
   navHovered.subscribe(value => hovered = value);
 
+  // Is the button hovered?
+  import { createEventDispatcher } from 'svelte';
+  const dispatch = createEventDispatcher();
+
+  function handleMouseEnter() {
+    dispatch('hovered', true);
+  }
+
+  function handleMouseLeave() {
+    dispatch('hovered', false);
+  }
+
+  // Props
   export let title = 'Button';
   export let className = '';
 </script>
 
-<div class="nav-button {className}" class:hovered={hovered}>{title}</div>
+<div
+  role="button"
+  tabindex="0"
+  class="nav-button {className}"
+  class:hovered={hovered}
+  on:mouseenter={handleMouseEnter}
+  on:mouseleave={handleMouseLeave}
+>
+  {title}
+</div>
 
 <style lang="scss">
   :root {

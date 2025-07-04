@@ -1,36 +1,57 @@
 <script>
   console.log('Nav component loaded');
+
+  // Is the nav hovered?
   import { setContext } from 'svelte';
   import { writable } from 'svelte/store';  
   const navHovered = writable(false);
   setContext('navHovered', navHovered);
 
+  // Is the Detail open?
+  const detailOpen = writable(false);
+  setContext('detailOpen', detailOpen);
+
+  const detailTitle = writable('');
+  setContext('detailTitle', detailTitle);
+
+  // Components
+  import Detail from './Detail.svelte';
   import NavButton from './NavButton.svelte';
   import Hamburger from './Hamburger.svelte';
   import Logo from './Logo.svelte';
 </script>
 
 <nav class="nav" on:mouseenter={() => navHovered.set(true)} on:mouseleave={() => navHovered.set(false)}>
-  <div class="nav-section nav-section--vehicles">
-    <Hamburger />
-    <NavButton title="R1S" />
-    <NavButton title="R1T" />
-    <NavButton title="R2" />
-    <NavButton title="R3" className="nav-button--active" />
-    <NavButton title="Fleet" />
+  <div class="nav-container">
+    <div class="nav-section nav-section--vehicles">
+      <Hamburger />
+      <div 
+        class="nav-actions"
+        on:mouseenter={() => detailOpen.set(true)}
+        on:mouseleave={() => detailOpen.set(false)}
+        role="navigation"
+      >
+        <NavButton title="R1S" on:hovered={(e) => detailTitle.set('R1S')} />
+        <NavButton title="R1T" on:hovered={(e) => detailTitle.set('R1T')} />
+        <NavButton title="R2" on:hovered={(e) => detailTitle.set('R2')} />
+        <NavButton title="R3" className="nav-button--active" on:hovered={(e) => detailTitle.set('R3')} />
+        <NavButton title="Fleet" on:hovered={(e) => detailTitle.set('Fleet')} />
+      </div>
+    </div>
+    <div class="nav-section nav-section--logo">
+      <Logo />
+    </div>
+    <div class="nav-section nav-section--user">
+      <NavButton title="Demo Drive" className="nav-button--small-text nav-button--accent" />
+      <NavButton title="Sign In" className="nav-button--small-text" />
+    </div>
   </div>
-  <div class="nav-section nav-section--logo">
-    <Logo />
-  </div>
-  <div class="nav-section nav-section--user">
-    <NavButton title="Demo Drive" className="nav-button--small-text nav-button--accent" />
-    <NavButton title="Sign In" className="nav-button--small-text" />
-  </div>
+  <Detail open={$detailOpen} title={$detailTitle} />
 </nav>
 
 <style lang="scss">
   :root {
-    --spacing-nav-gap-small: 10px;
+    --spacing-nav-gap-small: 6px;
     --spacing-nav-gap-medium: 20px;
     --color-nav-bg: transparent;
     --color-nav-bg-hover: #fff;
@@ -39,16 +60,21 @@
   .nav {
     width: 100%;
     max-width: 1920px;
-    height: 80px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
     margin: 20px auto 0;
-    gap: var(--spacing-nav-gap-medium);
     border-radius: 20px;
-    padding: 0 20px;
     transition: all 0.2s ease-in-out;
     position: relative;
+    overflow: hidden;
+  }
+  
+  .nav-container {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-nav-gap-medium);
+    padding: 0 20px;
   }
 
   .nav-section {
@@ -56,7 +82,13 @@
     align-items: center;
     flex: 1;
     justify-content: center;
+  }
+
+  .nav-actions {
+    display: flex;
+    align-items: center;
     gap: var(--spacing-nav-gap-small);
+    position: relative;
   }
 
   .nav-section--logo {
