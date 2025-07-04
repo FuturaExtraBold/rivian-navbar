@@ -21,14 +21,20 @@
   import Logo from './Logo.svelte';
 </script>
 
-<nav class="nav" on:mouseenter={() => navHovered.set(true)} on:mouseleave={() => navHovered.set(false)}>
+<nav 
+  class="nav" 
+  on:mouseenter={() => navHovered.set(true)} 
+  on:mouseleave={() => {
+    navHovered.set(false);
+    detailOpen.set(false);
+  }}
+>
   <div class="nav-container">
     <div class="nav-section nav-section--vehicles">
       <Hamburger />
       <div 
         class="nav-actions"
         on:mouseenter={() => detailOpen.set(true)}
-        on:mouseleave={() => detailOpen.set(false)}
         role="navigation"
       >
         <NavButton title="R1S" on:hovered={(e) => detailTitle.set('R1S')} />
