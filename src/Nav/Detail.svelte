@@ -1,8 +1,26 @@
 <script>
+  import { tick } from 'svelte';
+  import { gsap } from 'gsap';
   console.log('Detail component loaded');
+
+  // Props
   export let open = false;
   export let title = '';
   export let vehicleImage = null;
+  export let startingPrice = '';
+
+  // Image animation
+  let imageEl;
+
+  $: if (imageEl && vehicleImage) {
+    tick().then(() => {
+      gsap.fromTo(
+        imageEl,
+        { opacity: 1, x: 30 },
+        { opacity: 1, x: 0, duration: 1, ease: 'expo.out' }
+      );
+    });
+  }
 </script>
 
 <div class="detail" class:open>
@@ -10,11 +28,17 @@
   <div class="detail-content">
     <div class="detail-actions">
       <h1>Actions</h1>
-      <h1>{title}</h1>
-      <p>This is a placeholder for the detail view.</p>
     </div>
     <div class="detail-image">
-      <img src={vehicleImage} alt={title} />
+      <img bind:this={imageEl} src={vehicleImage} alt={title} />
+      <span class="detail-image-title">{title}</span>
+      {#if startingPrice}
+        <span class="detail-image-pricing">
+          <span>Starting at</span>
+          <br />
+          <span>{startingPrice}</span>
+        </span>
+      {/if}
     </div>
   </div>
 </div>
@@ -61,12 +85,31 @@
     justify-content: center;
     width: 100%;
     background-color: #eee;
+    position: relative;
 
     img {
       max-width: 100%;
       height: auto;
       display: none;
     }
+  }
+
+  .detail-image-title {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    font-size: 32px;
+    font-weight: bold;
+    line-height: 1;
+  }
+
+  .detail-image-pricing {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    font-size: 12px;
+    color: #666;
+    text-align: right;
   }
 
   .detail.open {
