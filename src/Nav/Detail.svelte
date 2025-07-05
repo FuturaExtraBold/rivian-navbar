@@ -16,11 +16,7 @@
   let imageEl;
   $: if (imageEl && vehicleImage) {
     tick().then(() => {
-      gsap.fromTo(
-        imageEl,
-        { opacity: 1, x: 30 },
-        { opacity: 1, x: 0, duration: 1, ease: 'expo.out' }
-      );
+      gsap.fromTo(imageEl, { x: 30 }, { x: 0, duration: 1, ease: 'expo.out' });
     });
   }
 </script>
