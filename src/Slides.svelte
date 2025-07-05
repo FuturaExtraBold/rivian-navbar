@@ -6,11 +6,11 @@
   import { writable } from 'svelte/store';
   import { gsap } from 'gsap';
 
-  const slideDuration = 6;
+  let progressItems = [];
+  const slideDuration = 8;
   const currentSlide = writable(0);
   setContext('currentSlide', currentSlide);
 
-  let progressItems = [];
   onMount(() => {
     const slides = document.querySelectorAll('.slide');
     slides[0].style.zIndex = '1';
@@ -25,9 +25,6 @@
           duration: slideDuration,
           ease: 'linear',
           onStart: () => {
-            slides.forEach((slide) => {
-              slide.style.transform = 'scale(1.2)';
-            });
             slides[slideIndex].style.zIndex = '1';
           },
         }
@@ -38,6 +35,11 @@
 
     setInterval(() => {
       currentSlide.update((slide) => {
+        slides.forEach((slide) => {
+          slide.style.transform = 'scale(1.2)';
+          slide.style.zIndex = '0';
+        });
+
         const nextSlide = (slide + 1) % slides.length;
         animateSlide(nextSlide);
 

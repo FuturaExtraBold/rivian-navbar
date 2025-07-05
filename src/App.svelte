@@ -1,4 +1,5 @@
 <script>
+  import Disclaimer from './Disclaimer.svelte';
   import Nav from './Nav/Nav.svelte';
   import Slides from './Slides.svelte';
 </script>
@@ -7,6 +8,7 @@
   <Slides />
   <div class="overlay"></div>
   <Nav />
+  <Disclaimer />
 </main>
 
 <style lang="scss">
