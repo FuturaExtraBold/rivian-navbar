@@ -47,6 +47,7 @@
       <div class="nav-actions" on:mouseenter={() => detailOpen.set(true)} role="navigation">
         {#each Object.values(vehicles) as vehicle, index}
           <NavButton
+            className={vehicle.title === 'R3' ? 'nav-button--active' : ''}
             title={vehicle.title}
             on:hovered={() => {
               detailOpen.set(true);
@@ -94,6 +95,7 @@
     transition: all 0.2s ease-in-out;
     position: relative;
     overflow: hidden;
+    z-index: 100;
   }
 
   .nav-container {

@@ -1,23 +1,69 @@
 <script>
+  // @ts-nocheck
+
   console.log('Slides component loaded');
-  import { onMount } from 'svelte';
+  import { onMount, setContext } from 'svelte';
+  import { writable } from 'svelte/store';
   import { gsap } from 'gsap';
 
+  const slideDuration = 6;
+  const currentSlide = writable(0);
+  setContext('currentSlide', currentSlide);
+
+  let progressItems = [];
   onMount(() => {
     const slides = document.querySelectorAll('.slide');
-    gsap.fromTo(
-      slides,
-      { opacity: 0, scale: 1.2 },
-      { opacity: 1, scale: 1, duration: 3, stagger: 6, ease: 'expo.out', repeat: -1 }
-    );
+    slides[0].style.zIndex = '1';
+    progressItems[0].classList.add('active');
+
+    function animateSlide(slideIndex) {
+      gsap.fromTo(
+        slides[slideIndex],
+        { scale: 1.2 },
+        {
+          scale: 1,
+          duration: slideDuration,
+          ease: 'linear',
+          onStart: () => {
+            slides.forEach((slide) => {
+              slide.style.transform = 'scale(1.2)';
+            });
+            slides[slideIndex].style.zIndex = '1';
+          },
+        }
+      );
+    }
+
+    animateSlide(0);
+
+    setInterval(() => {
+      currentSlide.update((slide) => {
+        const nextSlide = (slide + 1) % slides.length;
+        animateSlide(nextSlide);
+
+        progressItems.forEach((item, index) => {
+          item.classList.toggle('active', index === nextSlide);
+        });
+
+        return nextSlide;
+      });
+    }, slideDuration * 1000);
   });
 </script>
 
 <div class="slides">
-  <!-- Generate slides dynamically using a loop -->
   {#each Array(8) as _, index}
     <div class="slide slide--{index + 1}"></div>
   {/each}
+  <div class="slides-overlay"></div>
+  <div class="slide-progress">
+    {#each Array(8) as _, index}
+      <div
+        class="slide-progress__item slide-progress__item--{index + 1} "
+        bind:this={progressItems[index]}
+      ></div>
+    {/each}
+  </div>
 </div>
 
 <style lang="scss">
@@ -35,11 +81,17 @@
     @include slide-sizing;
   }
 
+  .slides-overlay {
+    @include slide-sizing;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 5;
+  }
+
   .slide {
     @include slide-sizing;
     background-size: cover;
     background-position: center;
-    scale: 1.2;
+    z-index: 0;
 
     &--1 {
       background-image: url('assets/slides/1.avif');
@@ -64,6 +116,28 @@
     }
     &--8 {
       background-image: url('assets/slides/9.avif');
+    }
+  }
+
+  .slide-progress {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+
+    &__item {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.1);
+      transition: background-color 0.3s ease-in-out;
+    }
+
+    &__item.active {
+      background-color: rgba(255, 255, 255, 0.7);
     }
   }
 </style>
