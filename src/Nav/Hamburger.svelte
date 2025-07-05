@@ -4,10 +4,10 @@
 
   const navHovered = getContext('navHovered');
   let hovered = false;
-  navHovered.subscribe(value => hovered = value);
+  navHovered.subscribe((value) => (hovered = value));
 </script>
 
-<div class="hamburger" class:hovered={hovered}>
+<div class="hamburger" class:hovered>
   <div class="bar"></div>
   <div class="bar"></div>
 </div>

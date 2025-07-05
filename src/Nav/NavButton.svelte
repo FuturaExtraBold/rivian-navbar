@@ -1,11 +1,11 @@
 <script>
   console.log('NavButton component loaded');
-  
+
   // Is the nav hovered?
   import { getContext } from 'svelte';
   const navHovered = getContext('navHovered');
   let hovered = false;
-  navHovered.subscribe(value => hovered = value);
+  navHovered.subscribe((value) => (hovered = value));
 
   // Is the button hovered?
   import { createEventDispatcher } from 'svelte';
@@ -28,7 +28,7 @@
   role="button"
   tabindex="0"
   class="nav-button {className}"
-  class:hovered={hovered}
+  class:hovered
   on:mouseenter={handleMouseEnter}
   on:mouseleave={handleMouseLeave}
 >
@@ -97,5 +97,4 @@
       background-color: var(--color-button-active-bg-hover);
     }
   }
-
 </style>

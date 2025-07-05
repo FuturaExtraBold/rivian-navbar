@@ -1,11 +1,11 @@
 <script>
-  console.log("Detail component loaded");
+  console.log('Detail component loaded');
   export let open = false;
   export let title = '';
   export let vehicleImage = null;
 </script>
 
-<div class="detail" class:open={open}>
+<div class="detail" class:open>
   <div class="detail-divider"></div>
   <div class="detail-content">
     <div class="detail-actions">
@@ -61,7 +61,7 @@
     justify-content: center;
     width: 100%;
     background-color: #eee;
-    
+
     img {
       max-width: 100%;
       height: auto;

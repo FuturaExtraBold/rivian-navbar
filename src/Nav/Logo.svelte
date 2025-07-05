@@ -4,10 +4,10 @@
 
   const navHovered = getContext('navHovered');
   let hovered = false;
-  navHovered.subscribe(value => hovered = value);
+  navHovered.subscribe((value) => (hovered = value));
 </script>
 
-<div class="nav-logo" class:hovered={hovered}>
+<div class="nav-logo" class:hovered>
   <h2>BENZO</h2>
 </div>
 
@@ -30,7 +30,7 @@
       transition: all 0.2s ease-in-out;
     }
 
-     &.hovered h2 {
+    &.hovered h2 {
       color: var(--color-logo-text-hover);
     }
   }
