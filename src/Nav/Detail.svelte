@@ -4,7 +4,6 @@
   import { tick } from 'svelte';
   import { gsap } from 'gsap';
   import NavButton from './NavButton.svelte';
-  import Nav from './Nav.svelte';
 
   // Props
   export let open = false;
