@@ -85,7 +85,7 @@
 
   .slides-overlay {
     @include slide-sizing;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.7);
     z-index: 5;
   }
 
@@ -135,7 +135,7 @@
       height: 5px;
       border-radius: 50%;
       background-color: rgba(255, 255, 255, 0.1);
-      transition: background-color 0.3s ease-in-out;
+      transition: background-color 0.2s ease-in-out;
     }
 
     &__item.active {
