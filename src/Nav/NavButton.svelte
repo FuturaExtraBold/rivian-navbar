@@ -96,6 +96,7 @@
 
   .nav-button--light {
     font-weight: 500;
+    letter-spacing: normal;
   }
 
   .nav-button--active {

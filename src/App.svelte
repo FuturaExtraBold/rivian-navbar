@@ -1,8 +1,10 @@
 <script>
   import Nav from './Nav/Nav.svelte';
+  import Slides from './Slides.svelte';
 </script>
 
 <main>
+  <Slides />
   <div class="overlay"></div>
   <Nav />
 </main>

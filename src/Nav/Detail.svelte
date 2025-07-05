@@ -59,6 +59,8 @@
     height: 0;
     width: 100%;
     position: relative;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
 
     > * {
       margin: 0;
@@ -121,6 +123,7 @@
 
   .detail.open {
     height: 400px;
+    opacity: 1;
 
     .detail-image img {
       display: block;
