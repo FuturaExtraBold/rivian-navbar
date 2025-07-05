@@ -88,6 +88,16 @@
     background-color: var(--color-button-accent-bg);
   }
 
+  .nav-button--full {
+    width: 100%;
+    justify-content: flex-start;
+    height: 50px;
+  }
+
+  .nav-button--light {
+    font-weight: 500;
+  }
+
   .nav-button--active {
     color: var(--color-text-hover);
     background-color: var(--color-button-bg-hover);

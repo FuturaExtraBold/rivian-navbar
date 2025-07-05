@@ -1,17 +1,20 @@
 <script>
+  console.log('Detail component loaded');
+
   import { tick } from 'svelte';
   import { gsap } from 'gsap';
-  console.log('Detail component loaded');
+  import NavButton from './NavButton.svelte';
+  import Nav from './Nav.svelte';
 
   // Props
   export let open = false;
   export let title = '';
   export let vehicleImage = null;
   export let startingPrice = '';
+  export let actions = [];
 
   // Image animation
   let imageEl;
-
   $: if (imageEl && vehicleImage) {
     tick().then(() => {
       gsap.fromTo(
@@ -27,7 +30,15 @@
   <div class="detail-divider"></div>
   <div class="detail-content">
     <div class="detail-actions">
-      <h1>Actions</h1>
+      {#each actions as action}
+        <NavButton
+          title={action.label}
+          className="nav-button--full nav-button--light"
+          on:click={() => {
+            console.log(`Action clicked: ${action.label}`);
+          }}
+        />
+      {/each}
     </div>
     <div class="detail-image">
       <img bind:this={imageEl} src={vehicleImage} alt={title} />
@@ -77,6 +88,7 @@
     flex-direction: column;
     padding: 20px;
     width: 400px;
+    gap: 6px;
   }
 
   .detail-image {

@@ -11,7 +11,7 @@
   setContext('navHovered', navHovered);
 
   // Is the Detail open?
-  const detailOpen = writable(true);
+  const detailOpen = writable(false);
   setContext('detailOpen', detailOpen);
 
   const detailTitle = writable('');
@@ -22,6 +22,9 @@
 
   const detailStartingPrice = writable('');
   setContext('detailStartingPrice', detailStartingPrice);
+
+  const detailActions = writable([]);
+  setContext('detailActions', detailActions);
 
   // Components
   import Detail from './Detail.svelte';
@@ -35,7 +38,7 @@
   on:mouseenter={() => navHovered.set(true)}
   on:mouseleave={() => {
     navHovered.set(false);
-    // detailOpen.set(false);
+    detailOpen.set(false);
   }}
 >
   <div class="nav-container">
@@ -50,6 +53,7 @@
               detailTitle.set(vehicle.title);
               detailImage.set(vehicle.image);
               detailStartingPrice.set(vehicle.startingPrice);
+              detailActions.set(vehicle.actions || []);
             }}
           />
         {/each}
@@ -66,6 +70,7 @@
     </div>
   </div>
   <Detail
+    actions={$detailActions}
     open={$detailOpen}
     title={$detailTitle}
     startingPrice={$detailStartingPrice}
