@@ -1,12 +1,14 @@
 <script>
   console.log('Nav component loaded');
 
+  // Svelte context for sharing state
+  import { setContext } from 'svelte';
+  import { writable } from 'svelte/store';
+
   // Vehicle data
   import { vehicles } from '../data/vehicles.js';
 
   // Is the nav hovered?
-  import { setContext } from 'svelte';
-  import { writable } from 'svelte/store';
   const navHovered = writable(false);
   setContext('navHovered', navHovered);
 
@@ -26,11 +28,16 @@
   const detailActions = writable([]);
   setContext('detailActions', detailActions);
 
+  // Is the Discovery menu open?
+  const discoveryOpen = writable(false);
+  setContext('discoveryOpen', discoveryOpen);
+
   // Components
   import Detail from './Detail.svelte';
   import NavButton from './NavButton.svelte';
   import Hamburger from './Hamburger.svelte';
   import Logo from './Logo.svelte';
+  import Discovery from './Discovery.svelte';
 </script>
 
 <nav
@@ -39,17 +46,25 @@
   on:mouseleave={() => {
     navHovered.set(false);
     detailOpen.set(false);
+    discoveryOpen.set(false);
   }}
 >
   <div class="nav-container">
     <div class="nav-section nav-section--vehicles">
-      <Hamburger />
+      <Hamburger
+        on:hovered={() => detailOpen.set(false)}
+        on:clicked={() => {
+          console.log('Hamburger clicked');
+          discoveryOpen.update((open) => !open);
+        }}
+      />
       <div class="nav-actions" on:mouseenter={() => detailOpen.set(true)} role="navigation">
         {#each Object.values(vehicles) as vehicle, index}
           <NavButton
             className={vehicle.title === 'R3' ? 'nav-button--active' : ''}
             title={vehicle.title}
             on:hovered={() => {
+              discoveryOpen.set(false);
               detailOpen.set(true);
               detailTitle.set(vehicle.title);
               detailImage.set(vehicle.image);
@@ -77,6 +92,7 @@
     startingPrice={$detailStartingPrice}
     vehicleImage={$detailImage}
   />
+  <Discovery open={$discoveryOpen} />
 </nav>
 
 <style lang="scss">

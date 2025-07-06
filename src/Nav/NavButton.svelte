@@ -1,4 +1,6 @@
 <script>
+  // @ts-nocheck
+
   console.log('NavButton component loaded');
 
   // Is the nav hovered?
