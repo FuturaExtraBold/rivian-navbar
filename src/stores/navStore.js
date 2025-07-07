@@ -11,6 +11,7 @@ export const discoveryOpen = writable(true);
 export const discoveryData = writable({
   title: '',
   features: [],
+  links: [],
 });
 export const hamburgerHovered = writable(false);
 export const hamburgerOpen = writable(false);

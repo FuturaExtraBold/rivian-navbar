@@ -1,19 +1,21 @@
 <script>
-  console.log('DiscoveryContent component loaded');
   import DiscoveryFeature from './DiscoveryFeature.svelte';
-  import { discovery } from '../../../data/discovery.js';
 
-  console.log('Discovery data:', discovery);
+  import { discoveryData } from '../../../stores/navStore';
 
-  let features = discovery.actions[0].features || [];
-
-  console.log('Discovery features:', features);
+  $: discoveryData;
 </script>
 
 <div class="content">
-  {#each Object.values(features) as feature}
-    <DiscoveryFeature {...feature} />
-  {/each}
+  <DiscoveryFeature {...$discoveryData.features[0]} />
+  <div class="content-split">
+    {#if $discoveryData.features.length >= 2}
+      <DiscoveryFeature {...$discoveryData.features[1]} />
+    {/if}
+    {#if $discoveryData.features.length >= 3}
+      <DiscoveryFeature {...$discoveryData.features[2]} />
+    {/if}
+  </div>
 </div>
 
 <style>
@@ -24,9 +26,17 @@
     height: 100%;
     padding: 20px;
     background-color: #fff;
-    border-left: 2px solid #eee;
-    border-right: 2px solid #eee;
+    border-left: 1px solid #eee;
+    border-right: 1px solid #eee;
     flex-direction: column;
     gap: 12px;
+  }
+
+  .content-split {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    width: 100%;
   }
 </style>

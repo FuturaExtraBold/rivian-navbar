@@ -10,6 +10,7 @@
   discoveryData.set({
     title: discovery.actions[0].title,
     features: discovery.actions[0].features,
+    links: discovery.actions[0].links,
   });
 
   $: discoveryData;
@@ -26,6 +27,7 @@
         discoveryData.set({
           title: action.title,
           features: action.features,
+          links: action.links,
         })}
     />
   {/each}

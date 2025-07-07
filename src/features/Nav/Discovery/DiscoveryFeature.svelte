@@ -18,11 +18,12 @@
   .feature {
     width: 100%;
     height: 100%;
-    border-radius: 15px;
+    border-radius: 12px;
     transition: border-radius 0.3s ease-out;
     cursor: pointer;
     overflow: hidden;
     position: relative;
+    flex: 1;
   }
 
   .background {
@@ -33,7 +34,7 @@
     position: absolute;
     background-size: cover;
     background-position: center;
-    transition: all 0.3s ease-out;
+    transition: transform 0.3s ease-out;
   }
 
   .container {
@@ -62,7 +63,7 @@
   }
 
   .feature:hover {
-    border-radius: 30px;
+    border-radius: 24px;
 
     .background {
       transform: scale(1.05);

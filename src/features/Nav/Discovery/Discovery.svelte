@@ -35,7 +35,7 @@
 
   .divider {
     width: 100%;
-    height: 2px;
+    height: 1px;
     background-color: #eee;
     position: absolute;
     top: 0;
