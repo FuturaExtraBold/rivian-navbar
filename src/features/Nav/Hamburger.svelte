@@ -1,13 +1,9 @@
 <script>
   import { gsap } from 'gsap';
-
   import { discoveryOpen, hamburgerHovered, navHovered } from '../../stores/navStore';
 
   let hovered = false;
   navHovered.subscribe((value) => (hovered = value));
-
-  let open = false;
-  discoveryOpen.subscribe((value) => (open = value));
 
   import { createEventDispatcher } from 'svelte';
   const dispatch = createEventDispatcher();
@@ -15,40 +11,41 @@
   let bar1, bar2;
 
   export function animateBars() {
-    if (bar1 && bar2) {
-      if (open) {
-        gsap.to(bar1, {
-          y: -3,
-          rotation: 45,
-          duration: 0.2,
-          ease: 'sine.inOut',
-        });
-        gsap.to(bar2, {
-          y: 3,
-          rotation: -45,
-          duration: 0.2,
-          ease: 'sine.inOut',
-        });
-      } else {
-        gsap.to(bar1, {
-          y: 0,
-          rotation: 0,
-          duration: 0.2,
-          ease: 'sine.inOut',
-        });
-        gsap.to(bar2, {
-          y: 0,
-          rotation: 0,
-          duration: 0.2,
-          ease: 'sine.inOut',
-        });
-      }
+    if ($discoveryOpen) {
+      gsap.to(bar1, {
+        y: -3,
+        rotation: 45,
+        duration: 0.2,
+        ease: 'sine.inOut',
+      });
+      gsap.to(bar2, {
+        y: 3,
+        rotation: -45,
+        duration: 0.2,
+        ease: 'sine.inOut',
+      });
+    } else {
+      gsap.to(bar1, {
+        y: 0,
+        rotation: 0,
+        duration: 0.2,
+        ease: 'sine.inOut',
+      });
+      gsap.to(bar2, {
+        y: 0,
+        rotation: 0,
+        duration: 0.2,
+        ease: 'sine.inOut',
+      });
     }
+  }
+
+  $: if (bar1 && bar2 && $discoveryOpen !== undefined) {
+    animateBars();
   }
 
   function handleClick() {
     dispatch('clicked', true);
-    animateBars();
   }
 
   function handleMouseEnter() {
@@ -67,7 +64,7 @@
   type="button"
   class="hamburger"
   class:hovered
-  class:open
+  class:open={$discoveryOpen}
   on:mouseenter={handleMouseEnter}
   on:mouseleave={handleMouseLeave}
   on:click={handleClick}

@@ -8,7 +8,13 @@
 <main>
   <Slides />
   {#if $discoveryOpen}
-    <button class="overlay" on:click={() => discoveryOpen.set(false)} aria-label="overlay"></button>
+    <button
+      class="overlay"
+      on:click={() => {
+        discoveryOpen.set(false);
+      }}
+      aria-label="overlay"
+    ></button>
   {/if}
   <Nav />
   <Disclaimer />
