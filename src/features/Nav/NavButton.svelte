@@ -1,11 +1,7 @@
 <script>
   // @ts-nocheck
 
-  console.log('NavButton component loaded');
-
-  // Is the nav hovered?
-  import { getContext } from 'svelte';
-  const navHovered = getContext('navHovered');
+  import { navHovered } from '../../stores/navStore.js';
   let hovered = false;
   navHovered.subscribe((value) => (hovered = value));
 

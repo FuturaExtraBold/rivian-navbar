@@ -1,12 +1,10 @@
 <script>
-  import { getContext } from 'svelte';
-
   import DetailActions from './DetailActions.svelte';
   import DetailContent from './DetailContent.svelte';
 
-  // Is the Detail open?
-  const detailOpen = getContext('detailOpen');
-  let open = false;
+  import { detailOpen } from '../../../stores/navStore.js';
+
+  let open;
   detailOpen.subscribe((value) => (open = value));
 </script>
 

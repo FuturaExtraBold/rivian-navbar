@@ -1,14 +1,12 @@
 <script>
-  import { getContext, tick } from 'svelte';
+  import { tick } from 'svelte';
   import { gsap } from 'gsap';
 
-  // Is the Detail open?
-  const detailOpen = getContext('detailOpen');
+  import { detailData, detailOpen } from '../../../stores/navStore';
+
   let open = false;
   detailOpen.subscribe((value) => (open = value));
 
-  // Get vehicle data from context
-  const detailData = getContext('detailData');
   let vehicle = {};
   detailData.subscribe((value) => (vehicle = value));
 

@@ -1,14 +1,16 @@
 <script>
   // @ts-nocheck
 
-  console.log('Hamburger component loaded');
-  import { getContext } from 'svelte';
+  import {
+    discoveryOpen,
+    hamburgerHovered,
+    hamburgerOpen,
+    navHovered,
+  } from '../../stores/navStore';
 
-  const navHovered = getContext('navHovered');
   let hovered = false;
   navHovered.subscribe((value) => (hovered = value));
 
-  let discoveryOpen = getContext('discoveryOpen');
   let open = false;
   discoveryOpen.subscribe((value) => (open = value));
 
@@ -17,14 +19,17 @@
 
   function handleClick() {
     dispatch('clicked', true);
+    hamburgerOpen.update((current) => !current);
   }
 
   function handleMouseEnter() {
     dispatch('hovered', true);
+    hamburgerHovered.set(true);
   }
 
   function handleMouseLeave() {
     dispatch('hovered', false);
+    hamburgerHovered.set(false);
   }
 </script>
 
@@ -70,7 +75,7 @@
   }
 
   .hamburger:active {
-    background-color: blue;
+    background-color: #ddd;
   }
 
   .bars {

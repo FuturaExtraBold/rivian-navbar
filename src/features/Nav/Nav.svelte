@@ -1,27 +1,11 @@
 <script>
   console.log('Nav component loaded');
 
-  // Svelte context for sharing state
-  import { setContext } from 'svelte';
-  import { writable } from 'svelte/store';
-
   // Vehicle data
   import { vehicles } from '../../data/vehicles.js';
 
-  // Is the nav hovered?
-  const navHovered = writable(false);
-  setContext('navHovered', navHovered);
-
-  // Is the Detail open?
-  const detailOpen = writable(false);
-  setContext('detailOpen', detailOpen);
-
-  const detailData = writable({});
-  setContext('detailData', detailData);
-
-  // Is the Discovery menu open?
-  const discoveryOpen = writable(false);
-  setContext('discoveryOpen', discoveryOpen);
+  // Global nav state stores
+  import { navHovered, detailOpen, discoveryOpen, detailData } from '../../stores/navStore.js';
 
   // Components
   import Detail from './Detail/Detail.svelte';
@@ -51,13 +35,14 @@
         on:mouseenter={() => detailOpen.set(true)}
         role="navigation"
       >
-        {#each Object.values(vehicles) as vehicle, index}
+        {#each Object.values(vehicles) as vehicle}
           <NavButton
             className={vehicle.title === 'R3' ? 'nav-button--active' : ''}
             title={vehicle.title}
             on:hovered={() => {
               discoveryOpen.set(false);
               detailOpen.set(true);
+              console.log(`Hovered on vehicle: ${vehicle.title}`);
               detailData.set(vehicle);
             }}
           />
@@ -74,7 +59,7 @@
       </div>
     </div>
   </div>
-  <Detail vehicle={$detailData} />
+  <Detail />
   <Discovery />
 </nav>
 

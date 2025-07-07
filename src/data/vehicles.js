@@ -47,12 +47,14 @@ export const vehicles = {
     image: r3Image,
     description:
       "The R3 is Rivian's future electric vehicle, promising advanced technology and sustainability.",
+    startingPrice: null,
     actions: [{ label: 'Explore', url: '/' }],
   },
   Fleet: {
     title: 'Fleet',
     image: fleetImage,
     description: "Rivian's fleet solutions for businesses and commercial use.",
+    startingPrice: null,
     actions: [
       { label: 'Explore', url: '/' },
       { label: 'Start a Fleet order', url: '/' },

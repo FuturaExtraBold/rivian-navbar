@@ -1,14 +1,15 @@
 <script>
-  import { getContext } from 'svelte';
-
   import NavButton from '../NavButton.svelte';
 
-  // Get actions data from context
-  const detailData = getContext('detailData');
+  import { detailData } from '../../../stores/navStore';
   let vehicle = {};
   detailData.subscribe((value) => (vehicle = value));
 
+  console.log('vehicle', vehicle);
+
   let actions = vehicle.actions;
+
+  console.log('actions', actions);
 
   $: {
     actions = vehicle.actions;

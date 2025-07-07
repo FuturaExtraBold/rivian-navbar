@@ -1,16 +1,20 @@
 <script>
-  console.log('Discovery component loaded');
-  import { getContext } from 'svelte';
+  import DiscoveryActions from './DiscoveryActions.svelte';
+  import DiscoveryContent from './DiscoveryContent.svelte';
+  import DiscoveryLocations from './DiscoveryLocations.svelte';
 
-  // Is the Discovery menu open?
-  const discoveryOpen = getContext('discoveryOpen');
+  import { discoveryOpen } from '../../../stores/navStore.js';
   let open = false;
   discoveryOpen.subscribe((value) => (open = value));
 </script>
 
 <div class="discovery" class:open>
-  <h1>Discovery</h1>
-  <p>Explore new content and features here!</p>
+  <div class="container">
+    <div class="divider"></div>
+    <DiscoveryActions />
+    <DiscoveryContent />
+    <DiscoveryLocations />
+  </div>
 </div>
 
 <style>
@@ -27,6 +31,22 @@
     > * {
       margin: 0;
     }
+  }
+
+  .divider {
+    width: 100%;
+    height: 2px;
+    background-color: #eee;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    background-color: #eee;
   }
 
   .discovery.open {

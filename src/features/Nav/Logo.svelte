@@ -1,8 +1,5 @@
 <script>
-  console.log('Logo component loaded');
-  import { getContext } from 'svelte';
-
-  const navHovered = getContext('navHovered');
+  import { navHovered } from '../../stores/navStore';
   let hovered = false;
   navHovered.subscribe((value) => (hovered = value));
 </script>
