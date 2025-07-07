@@ -1,5 +1,9 @@
 # Rivian Navbar Demo
 
-### ⚠️ Disclaimer: This is a personal project created for learning and portfolio purposes.
+### ⚠️&nbsp;&nbsp;Disclaimer
 
-### Rivian and all related brand assets are the property of Rivian Automotive, Inc.
+#### This is a personal project created for demonstration purposes.
+
+#### Nothing is offered for sale. Images and text are presentational.
+
+#### All related brand assets are the property of Rivian, LLC.
