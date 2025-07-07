@@ -1,7 +1,7 @@
 <script>
   import DiscoveryActions from './DiscoveryActions.svelte';
   import DiscoveryContent from './DiscoveryContent.svelte';
-  import DiscoveryLocations from './DiscoveryLocations.svelte';
+  import DiscoveryLinks from './DiscoveryLinks.svelte';
 
   import { discoveryOpen } from '../../../stores/navStore.js';
   let open = false;
@@ -13,7 +13,7 @@
     <div class="divider"></div>
     <DiscoveryActions />
     <DiscoveryContent />
-    <DiscoveryLocations />
+    <DiscoveryLinks />
   </div>
 </div>
 

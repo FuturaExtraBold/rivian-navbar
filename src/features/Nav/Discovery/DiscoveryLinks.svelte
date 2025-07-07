@@ -1,11 +1,11 @@
 <script>
-  console.log('DiscoveryLocations component loaded');
+  console.log('DiscoveryLinks component loaded');
 </script>
 
-<div class="locations"></div>
+<div class="links"></div>
 
 <style>
-  .locations {
+  .links {
     display: flex;
     flex-direction: column;
     gap: 6px;

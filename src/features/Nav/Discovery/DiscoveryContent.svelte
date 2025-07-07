@@ -1,10 +1,19 @@
 <script>
   console.log('DiscoveryContent component loaded');
+  import DiscoveryFeature from './DiscoveryFeature.svelte';
+  import { discovery } from '../../../data/discovery.js';
+
+  console.log('Discovery data:', discovery);
+
+  let features = discovery.actions[0].features || [];
+
+  console.log('Discovery features:', features);
 </script>
 
 <div class="content">
-  <div class="item"></div>
-  <div class="item"></div>
+  {#each Object.values(features) as feature}
+    <DiscoveryFeature {...feature} />
+  {/each}
 </div>
 
 <style>
@@ -18,20 +27,6 @@
     border-left: 2px solid #eee;
     border-right: 2px solid #eee;
     flex-direction: column;
-    gap: 20px;
-  }
-
-  .item {
-    width: 100%;
-    height: 100%;
-    background-color: red;
-    border-radius: 20px;
-    transition: border-radius 0.2s ease-in-out;
-    cursor: pointer;
-    overflow: hidden;
-  }
-
-  .item:hover {
-    border-radius: 40px;
+    gap: 12px;
   }
 </style>

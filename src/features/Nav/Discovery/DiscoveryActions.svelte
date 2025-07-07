@@ -1,18 +1,41 @@
 <script>
   import NavButton from '../NavButton.svelte';
+  import { discovery } from '../../../data/discovery.js';
+  import { discoveryData } from '../../../stores/navStore';
+
+  discoveryData.subscribe((data) => {
+    console.log('Discovery data updated:', data);
+  });
+
+  discoveryData.set({
+    title: discovery.actions[0].title,
+    features: discovery.actions[0].features,
+  });
+
+  $: discoveryData;
 </script>
 
 <div class="actions">
-  <NavButton title="Action 1" className="nav-button--full nav-button--light nav-button--active" />
-  <NavButton title="Action 2" className="nav-button--full nav-button--light" />
-  <NavButton title="Action 3" className="nav-button--full nav-button--light" />
+  {#each discovery.actions as action}
+    <NavButton
+      title={action.title}
+      className="nav-button--full nav-button--light {$discoveryData.title === action.title
+        ? 'nav-button--active'
+        : ''}"
+      on:click={() =>
+        discoveryData.set({
+          title: action.title,
+          features: action.features,
+        })}
+    />
+  {/each}
 </div>
 
 <style>
   .actions {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 10px;
     padding: 20px;
     width: 280px;
     background-color: #fff;

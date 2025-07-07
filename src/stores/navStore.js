@@ -7,7 +7,11 @@ export const detailData = writable({
   actions: [],
 });
 export const detailOpen = writable(false);
-export const discoveryOpen = writable(false);
+export const discoveryOpen = writable(true);
+export const discoveryData = writable({
+  title: '',
+  features: [],
+});
 export const hamburgerHovered = writable(false);
 export const hamburgerOpen = writable(false);
 export const navHovered = writable(false);

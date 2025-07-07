@@ -27,6 +27,7 @@
   tabindex="0"
   class="nav-button {className}"
   class:hovered
+  on:click
   on:mouseenter={handleMouseEnter}
   on:mouseleave={handleMouseLeave}
 >
