@@ -1,8 +1,11 @@
 <script>
   console.log('Discovery component loaded');
+  import { getContext } from 'svelte';
 
-  // Props
-  export let open = false;
+  // Is the Discovery menu open?
+  const discoveryOpen = getContext('discoveryOpen');
+  let open = false;
+  discoveryOpen.subscribe((value) => (open = value));
 </script>
 
 <div class="discovery" class:open>

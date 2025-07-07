@@ -1,7 +1,7 @@
 <script>
-  import Disclaimer from './Disclaimer.svelte';
-  import Nav from './Nav/Nav.svelte';
-  import Slides from './Slides.svelte';
+  import Disclaimer from './features/Disclaimer.svelte';
+  import Nav from './features/Nav/Nav.svelte';
+  import Slides from './features/Slides.svelte';
 </script>
 
 <main>

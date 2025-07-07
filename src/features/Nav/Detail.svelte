@@ -1,12 +1,11 @@
 <script>
   console.log('Detail component loaded');
 
-  import { tick } from 'svelte';
+  import { getContext, tick } from 'svelte';
   import { gsap } from 'gsap';
   import NavButton from './NavButton.svelte';
 
   // Props
-  export let open = false;
   export let vehicle = {};
   let title,
     vehicleImage,
@@ -20,6 +19,11 @@
     startingPrice = vehicle.startingPrice;
     actions = vehicle.actions;
   }
+
+  // Is the Detail open?
+  const detailOpen = getContext('detailOpen');
+  let open = false;
+  detailOpen.subscribe((value) => (open = value));
 
   // Image animation
   let imageEl;

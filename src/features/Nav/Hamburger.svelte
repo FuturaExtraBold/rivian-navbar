@@ -8,6 +8,10 @@
   let hovered = false;
   navHovered.subscribe((value) => (hovered = value));
 
+  let discoveryOpen = getContext('discoveryOpen');
+  let open = false;
+  discoveryOpen.subscribe((value) => (open = value));
+
   import { createEventDispatcher } from 'svelte';
   const dispatch = createEventDispatcher();
 
@@ -29,6 +33,7 @@
   type="button"
   class="hamburger"
   class:hovered
+  class:open
   on:mouseenter={handleMouseEnter}
   on:mouseleave={handleMouseLeave}
   on:click={handleClick}
@@ -52,15 +57,20 @@
     cursor: pointer;
     position: relative;
     border: 0;
-    background-color: red;
+    background-color: transparent;
     padding: 0;
     align-items: center;
     justify-content: center;
     margin-right: 6px;
+    border-radius: 50%;
 
     &.hovered .bar {
       background-color: var(--color-nav-hamburger-bg-hover);
     }
+  }
+
+  .hamburger:active {
+    background-color: blue;
   }
 
   .bars {

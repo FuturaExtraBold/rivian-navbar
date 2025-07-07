@@ -6,7 +6,7 @@
   import { writable } from 'svelte/store';
 
   // Vehicle data
-  import { vehicles } from '../data/vehicles.js';
+  import { vehicles } from '../../data/vehicles.js';
 
   // Is the nav hovered?
   const navHovered = writable(false);
@@ -28,7 +28,7 @@
   import NavButton from './NavButton.svelte';
   import Hamburger from './Hamburger.svelte';
   import Logo from './Logo.svelte';
-  import Discovery from './Discovery.svelte';
+  import Discovery from '../Discovery/Discovery.svelte';
 </script>
 
 <nav
@@ -74,8 +74,8 @@
       </div>
     </div>
   </div>
-  <Detail open={$detailOpen} vehicle={$detailData} />
-  <Discovery open={$discoveryOpen} />
+  <Detail vehicle={$detailData} />
+  <Discovery />
 </nav>
 
 <style lang="scss">
