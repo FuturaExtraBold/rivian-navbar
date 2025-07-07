@@ -7,6 +7,10 @@
 
   import { vehicles } from '../../data/vehicles.js';
   import { navHovered, detailOpen, discoveryOpen, detailData } from '../../stores/navStore.js';
+
+  let kaboom = false;
+  discoveryOpen.subscribe((value) => (kaboom = value));
+  console.log('Discovery Open:', kaboom);
 </script>
 
 <nav

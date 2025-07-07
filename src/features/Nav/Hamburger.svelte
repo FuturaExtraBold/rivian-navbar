@@ -1,12 +1,7 @@
 <script>
-  // @ts-nocheck
+  import { gsap } from 'gsap';
 
-  import {
-    discoveryOpen,
-    hamburgerHovered,
-    hamburgerOpen,
-    navHovered,
-  } from '../../stores/navStore';
+  import { discoveryOpen, hamburgerHovered, navHovered } from '../../stores/navStore';
 
   let hovered = false;
   navHovered.subscribe((value) => (hovered = value));
@@ -17,9 +12,43 @@
   import { createEventDispatcher } from 'svelte';
   const dispatch = createEventDispatcher();
 
+  let bar1, bar2;
+
+  export function animateBars() {
+    if (bar1 && bar2) {
+      if (open) {
+        gsap.to(bar1, {
+          y: -3,
+          rotation: 45,
+          duration: 0.2,
+          ease: 'sine.inOut',
+        });
+        gsap.to(bar2, {
+          y: 3,
+          rotation: -45,
+          duration: 0.2,
+          ease: 'sine.inOut',
+        });
+      } else {
+        gsap.to(bar1, {
+          y: 0,
+          rotation: 0,
+          duration: 0.2,
+          ease: 'sine.inOut',
+        });
+        gsap.to(bar2, {
+          y: 0,
+          rotation: 0,
+          duration: 0.2,
+          ease: 'sine.inOut',
+        });
+      }
+    }
+  }
+
   function handleClick() {
     dispatch('clicked', true);
-    hamburgerOpen.update((current) => !current);
+    animateBars();
   }
 
   function handleMouseEnter() {
@@ -44,8 +73,8 @@
   on:click={handleClick}
 >
   <div class="bars">
-    <div class="bar"></div>
-    <div class="bar"></div>
+    <div class="bar" bind:this={bar1}></div>
+    <div class="bar" bind:this={bar2}></div>
   </div>
 </button>
 
@@ -94,7 +123,7 @@
     height: 2px;
     width: 100%;
     background-color: white;
-    transition: all 0.3s ease-in-out;
+    transform-origin: center center;
     position: absolute;
     transform: translateY(-50%);
     top: calc(50% - 3px);

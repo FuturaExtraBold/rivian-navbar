@@ -4,6 +4,7 @@
   import DiscoveryLinks from './DiscoveryLinks.svelte';
 
   import { discoveryData, discoveryOpen } from '../../../stores/navStore.js';
+
   let open = false;
   discoveryOpen.subscribe((value) => (open = value));
   $: discoveryData;

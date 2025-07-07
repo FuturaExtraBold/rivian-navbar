@@ -25,6 +25,7 @@
     overflow: hidden;
     position: relative;
     flex: 1;
+    background-color: #f9f9f9;
   }
 
   .background {
