@@ -29,6 +29,7 @@
 
     animateSlide(0);
 
+    // Start slideshow interval
     const slideshowInterval = setInterval(() => {
       console.log('currentSlide:', $currentSlide);
       currentSlide.update((slide) => {
@@ -51,7 +52,6 @@
         location.reload();
       }
     };
-
     document.addEventListener('visibilitychange', handleVisibilityChange);
 
     return () => {
