@@ -1,22 +1,21 @@
 <script>
-  // @ts-nocheck
-
   console.log('Slides component loaded');
   import { onMount, setContext } from 'svelte';
   import { writable } from 'svelte/store';
   import { gsap } from 'gsap';
 
   let progressItems = [];
-  const slideDuration = 8;
+  const slideDuration = 6;
   const currentSlide = writable(0);
   setContext('currentSlide', currentSlide);
 
   onMount(() => {
     const slides = document.querySelectorAll('.slide');
-    slides[0].style.zIndex = '1';
     progressItems[0].classList.add('active');
 
     function animateSlide(slideIndex) {
+      console.log('Animating slide:', slideIndex);
+      slides[slideIndex].parentElement.appendChild(slides[slideIndex]);
       gsap.fromTo(
         slides[slideIndex],
         { scale: 1.2 },
@@ -24,22 +23,15 @@
           scale: 1,
           duration: slideDuration,
           ease: 'linear',
-          onStart: () => {
-            slides[slideIndex].style.zIndex = '1';
-          },
         }
       );
     }
 
     animateSlide(0);
 
-    setInterval(() => {
+    const slideshowInterval = setInterval(() => {
+      console.log('currentSlide:', $currentSlide);
       currentSlide.update((slide) => {
-        slides.forEach((slide) => {
-          slide.style.transform = 'scale(1.2)';
-          slide.style.zIndex = '0';
-        });
-
         const nextSlide = (slide + 1) % slides.length;
         animateSlide(nextSlide);
 
@@ -50,13 +42,31 @@
         return nextSlide;
       });
     }, slideDuration * 1000);
+
+    // Pause/resume interval on tab visibility change
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        clearInterval(slideshowInterval);
+      } else {
+        location.reload();
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    return () => {
+      clearInterval(slideshowInterval);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
   });
 </script>
 
 <div class="slides">
-  {#each Array(8) as _, index}
-    <div class="slide slide--{index + 1}"></div>
-  {/each}
+  <div class="slides-slides">
+    {#each Array(8) as _, index}
+      <div class="slide slide--{index + 1}"></div>
+    {/each}
+  </div>
   <div class="slides-overlay"></div>
   <div class="slide-progress">
     {#each Array(8) as _, index}
@@ -89,6 +99,10 @@
     z-index: 5;
   }
 
+  .slides-slides {
+    @include slide-sizing;
+  }
+
   .slide {
     @include slide-sizing;
     background-size: cover;
@@ -105,19 +119,19 @@
       background-image: url('assets/slides/3.avif');
     }
     &--4 {
-      background-image: url('assets/slides/5.avif');
+      background-image: url('assets/slides/4.avif');
     }
     &--5 {
-      background-image: url('assets/slides/6.avif');
+      background-image: url('assets/slides/5.avif');
     }
     &--6 {
-      background-image: url('assets/slides/7.avif');
+      background-image: url('assets/slides/6.avif');
     }
     &--7 {
-      background-image: url('assets/slides/8.avif');
+      background-image: url('assets/slides/7.avif');
     }
     &--8 {
-      background-image: url('assets/slides/9.avif');
+      background-image: url('assets/slides/8.avif');
     }
   }
 

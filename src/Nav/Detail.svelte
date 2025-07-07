@@ -7,10 +7,19 @@
 
   // Props
   export let open = false;
-  export let title = '';
-  export let vehicleImage = null;
-  export let startingPrice = '';
-  export let actions = [];
+  export let vehicle = {};
+  let title,
+    vehicleImage,
+    startingPrice,
+    actions = [];
+
+  // Reactive
+  $: {
+    title = vehicle.title;
+    vehicleImage = vehicle.image;
+    startingPrice = vehicle.startingPrice;
+    actions = vehicle.actions;
+  }
 
   // Image animation
   let imageEl;

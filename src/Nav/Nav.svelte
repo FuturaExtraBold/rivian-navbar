@@ -16,17 +16,8 @@
   const detailOpen = writable(false);
   setContext('detailOpen', detailOpen);
 
-  const detailTitle = writable('');
-  setContext('detailTitle', detailTitle);
-
-  const detailImage = writable('');
-  setContext('detailImage', detailImage);
-
-  const detailStartingPrice = writable('');
-  setContext('detailStartingPrice', detailStartingPrice);
-
-  const detailActions = writable([]);
-  setContext('detailActions', detailActions);
+  const detailData = writable({});
+  setContext('detailData', detailData);
 
   // Is the Discovery menu open?
   const discoveryOpen = writable(false);
@@ -53,12 +44,13 @@
     <div class="nav-section nav-section--vehicles">
       <Hamburger
         on:hovered={() => detailOpen.set(false)}
-        on:clicked={() => {
-          console.log('Hamburger clicked');
-          discoveryOpen.update((open) => !open);
-        }}
+        on:clicked={() => discoveryOpen.update((open) => !open)}
       />
-      <div class="nav-actions" on:mouseenter={() => detailOpen.set(true)} role="navigation">
+      <div
+        class="nav-actions {$discoveryOpen ? 'nav-actions--hidden' : ''}"
+        on:mouseenter={() => detailOpen.set(true)}
+        role="navigation"
+      >
         {#each Object.values(vehicles) as vehicle, index}
           <NavButton
             className={vehicle.title === 'R3' ? 'nav-button--active' : ''}
@@ -66,10 +58,7 @@
             on:hovered={() => {
               discoveryOpen.set(false);
               detailOpen.set(true);
-              detailTitle.set(vehicle.title);
-              detailImage.set(vehicle.image);
-              detailStartingPrice.set(vehicle.startingPrice);
-              detailActions.set(vehicle.actions || []);
+              detailData.set(vehicle);
             }}
           />
         {/each}
@@ -79,19 +68,13 @@
       <Logo />
     </div>
     <div class="nav-section nav-section--user">
-      <div class="nav-actions">
+      <div class="nav-actions {$discoveryOpen ? 'nav-actions--hidden' : ''}">
         <NavButton title="Demo Drive" className="nav-button--small-text nav-button--accent" />
         <NavButton title="Sign In" className="nav-button--small-text" />
       </div>
     </div>
   </div>
-  <Detail
-    actions={$detailActions}
-    open={$detailOpen}
-    title={$detailTitle}
-    startingPrice={$detailStartingPrice}
-    vehicleImage={$detailImage}
-  />
+  <Detail open={$detailOpen} vehicle={$detailData} />
   <Discovery open={$discoveryOpen} />
 </nav>
 
@@ -136,6 +119,14 @@
     align-items: center;
     gap: var(--spacing-nav-gap-small);
     position: relative;
+    opacity: 1;
+    transition: opacity 0.2s ease-in-out;
+    pointer-events: all;
+  }
+
+  .nav-actions--hidden {
+    opacity: 0;
+    pointer-events: none;
   }
 
   .nav-section--logo {
