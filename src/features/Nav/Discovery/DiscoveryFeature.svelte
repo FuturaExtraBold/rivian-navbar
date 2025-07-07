@@ -3,9 +3,10 @@
   export let image;
   export let largeType;
   export let lightText;
+  export let className = '';
 </script>
 
-<div class="feature">
+<div class="feature {className === 'first' ? 'feature--first' : ''}">
   <div class="background" style="background-image: url({image});"></div>
   <div class="container">
     <span class="title {largeType ? 'title--large' : ''} {lightText ? 'title--light' : ''}">
@@ -54,7 +55,7 @@
     letter-spacing: -2px;
   }
 
-  .title--large {
+  .feature--first .title {
     font-size: 42px;
   }
 

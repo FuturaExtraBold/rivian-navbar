@@ -3,9 +3,10 @@
   import DiscoveryContent from './DiscoveryContent.svelte';
   import DiscoveryLinks from './DiscoveryLinks.svelte';
 
-  import { discoveryOpen } from '../../../stores/navStore.js';
+  import { discoveryData, discoveryOpen } from '../../../stores/navStore.js';
   let open = false;
   discoveryOpen.subscribe((value) => (open = value));
+  $: discoveryData;
 </script>
 
 <div class="discovery" class:open>
@@ -13,7 +14,9 @@
     <div class="divider"></div>
     <DiscoveryActions />
     <DiscoveryContent />
-    <DiscoveryLinks />
+    {#if $discoveryData && $discoveryData.links}
+      <DiscoveryLinks />
+    {/if}
   </div>
 </div>
 

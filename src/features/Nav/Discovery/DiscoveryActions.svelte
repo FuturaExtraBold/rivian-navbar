@@ -41,5 +41,6 @@
     padding: 20px;
     width: 280px;
     background-color: #fff;
+    border-right: 1px solid #eee;
   }
 </style>

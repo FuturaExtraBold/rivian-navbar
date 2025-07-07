@@ -1,20 +1,17 @@
 export const discovery = {
   actions: [
     {
-      id: 'action-1',
       title: 'Visit',
       href: '/',
       features: [
         {
           title: 'Spaces',
           image: 'assets/discovery/visit_1.jpg',
-          largeType: true,
           lightText: true,
         },
         {
           title: 'Demo Drive',
           image: 'assets/discovery/visit_2.jpg',
-          largeType: false,
           lightText: true,
         },
       ],
@@ -57,26 +54,22 @@ export const discovery = {
       ],
     },
     {
-      id: 'action-2',
       title: 'Gear Shop',
       href: '/',
       features: [
         {
           title: 'All Gear',
           image: 'assets/discovery/gear_1.jpg',
-          largeType: true,
           lightText: false,
         },
         {
           title: 'Adventure Gear',
           image: 'assets/discovery/gear_2.jpg',
-          largeType: false,
           lightText: true,
         },
         {
           title: 'Charging Products',
           image: 'assets/discovery/gear_3.jpg',
-          largeType: false,
           lightText: true,
         },
       ],
@@ -99,6 +92,59 @@ export const discovery = {
             { text: 'Pilgrim Surf + Supply x Rivian', href: '/' },
             { text: 'In Case of Adventure', href: '/' },
             { text: 'Pets', href: '/' },
+          ],
+        },
+      ],
+    },
+    {
+      title: 'Charging',
+      href: '/',
+      features: [
+        {
+          title: 'Charging with Rivian',
+          image: 'assets/discovery/charging_1.jpg',
+          lightText: true,
+        },
+        {
+          title: 'Charging Tools',
+          image: 'assets/discovery/charging_2.jpg',
+          lightText: true,
+        },
+        {
+          title: 'Charging Products',
+          image: 'assets/discovery/charging_3.jpg',
+          lightText: false,
+        },
+      ],
+      links: null,
+    },
+    {
+      title: 'Ownership',
+      href: '/',
+      features: [
+        {
+          title: 'Service',
+          image: 'assets/discovery/ownership_1.jpg',
+          lightText: true,
+        },
+        {
+          title: 'Insurance',
+          image: 'assets/discovery/ownership_2.jpg',
+          lightText: true,
+        },
+        {
+          title: 'Pre-owned',
+          image: 'assets/discovery/ownership_3.jpg',
+          lightText: true,
+        },
+      ],
+      links: [
+        {
+          title: 'Ownership',
+          items: [
+            { text: 'Get a trade-in estimate', href: '/' },
+            { text: 'Learn about EV credits', href: '/' },
+            { text: 'Explore purchasing', href: '/' },
           ],
         },
       ],

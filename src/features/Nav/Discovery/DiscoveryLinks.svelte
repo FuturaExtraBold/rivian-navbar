@@ -22,6 +22,7 @@
     padding: 20px;
     width: 280px;
     background-color: #fff;
+    border-left: 1px solid #eee;
   }
 
   .title {
