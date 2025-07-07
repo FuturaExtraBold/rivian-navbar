@@ -9,6 +9,10 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+:root {
+  --divider-color: #eee;
+}
+
 *,
 *::before,
 *::after {

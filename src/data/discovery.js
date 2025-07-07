@@ -149,5 +149,63 @@ export const discovery = {
         },
       ],
     },
+    {
+      title: 'Company',
+      href: '/',
+      features: [
+        {
+          title: 'Mission & Purpose',
+          image: 'assets/discovery/company_1.jpg',
+          lightText: true,
+        },
+        {
+          title: 'Stories',
+          image: 'assets/discovery/company_2.png',
+          lightText: true,
+        },
+        {
+          title: 'Leadership',
+          image: 'assets/discovery/company_3.jpg',
+          lightText: true,
+        },
+      ],
+      links: [
+        {
+          title: 'Company',
+          items: [
+            { text: 'Scaling Responsibly', href: '/' },
+            { text: 'Newsroom', href: '/' },
+            { text: 'Investors', href: '/' },
+            { text: 'Careers', href: '/' },
+            { text: 'Forever', href: '/' },
+          ],
+        },
+      ],
+    },
+    {
+      title: 'Support',
+      dividerBefore: true,
+      href: '/',
+      features: [
+        {
+          title: 'Support',
+          image: 'assets/discovery/support_1.jpg',
+          lightText: true,
+          verticalCenter: true,
+        },
+      ],
+      links: [
+        {
+          title: 'Trending topics',
+          items: [
+            { text: 'How do I get a demo drive?', href: '/' },
+            { text: 'What vehicle incentives do I qualify for?', href: '/' },
+            { text: 'What can I expect during a demo drive?', href: '/' },
+            { text: 'How can I pay for my Rivian?', href: '/' },
+            { text: 'What is the difference between Quad and Dual?', href: '/' },
+          ],
+        },
+      ],
+    },
   ],
 };

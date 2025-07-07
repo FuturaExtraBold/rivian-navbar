@@ -18,6 +18,9 @@
 
 <div class="actions">
   {#each discovery.actions as action}
+    {#if action.dividerBefore}
+      <div class="divider"></div>
+    {/if}
     <NavButton
       title={action.title}
       className="nav-button--full nav-button--light {$discoveryData.title === action.title
@@ -42,5 +45,11 @@
     width: 280px;
     background-color: #fff;
     border-right: 1px solid #eee;
+  }
+
+  .divider {
+    height: 1px;
+    background-color: #eee;
+    margin: 10px 0;
   }
 </style>

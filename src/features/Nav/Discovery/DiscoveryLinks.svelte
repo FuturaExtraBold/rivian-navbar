@@ -20,6 +20,7 @@
     display: flex;
     flex-direction: column;
     padding: 20px;
+    padding-right: 40px;
     width: 280px;
     background-color: #fff;
     border-left: 1px solid #eee;
@@ -41,5 +42,6 @@
     color: #000;
     text-decoration: none;
     font-size: 16px;
+    line-height: 1.5;
   }
 </style>

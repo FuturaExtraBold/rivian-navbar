@@ -1,15 +1,15 @@
 <script>
   export let title;
   export let image;
-  export let largeType;
   export let lightText;
   export let className = '';
+  export let verticalCenter = false;
 </script>
 
 <div class="feature {className === 'first' ? 'feature--first' : ''}">
   <div class="background" style="background-image: url({image});"></div>
-  <div class="container">
-    <span class="title {largeType ? 'title--large' : ''} {lightText ? 'title--light' : ''}">
+  <div class="container {verticalCenter ? 'container--vertical-center' : ''}">
+    <span class="title {lightText ? 'title--light' : ''}">
       {title}
     </span>
   </div>
@@ -45,6 +45,10 @@
     width: 100%;
     height: 100%;
     padding: 20px;
+  }
+
+  .container--vertical-center {
+    justify-content: center;
   }
 
   .title {
