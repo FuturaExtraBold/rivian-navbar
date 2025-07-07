@@ -1,5 +1,4 @@
 <script>
-  console.log('Slides component loaded');
   import { onMount, setContext } from 'svelte';
   import { writable } from 'svelte/store';
   import { gsap } from 'gsap';
@@ -14,7 +13,6 @@
     progressItems[0].classList.add('active');
 
     function animateSlide(slideIndex) {
-      console.log('Animating slide:', slideIndex);
       slides[slideIndex].parentElement.appendChild(slides[slideIndex]);
       gsap.fromTo(
         slides[slideIndex],
@@ -31,7 +29,6 @@
 
     // Start slideshow interval
     const slideshowInterval = setInterval(() => {
-      console.log('currentSlide:', $currentSlide);
       currentSlide.update((slide) => {
         const nextSlide = (slide + 1) % slides.length;
         animateSlide(nextSlide);

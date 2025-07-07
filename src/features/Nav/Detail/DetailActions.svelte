@@ -5,11 +5,7 @@
   let vehicle = {};
   detailData.subscribe((value) => (vehicle = value));
 
-  console.log('vehicle', vehicle);
-
   let actions = vehicle.actions;
-
-  console.log('actions', actions);
 
   $: {
     actions = vehicle.actions;

@@ -1,27 +1,21 @@
 <script>
-  console.log('Nav component loaded');
-
-  // Vehicle data
-  import { vehicles } from '../../data/vehicles.js';
-
-  // Global nav state stores
-  import { navHovered, detailOpen, discoveryOpen, detailData } from '../../stores/navStore.js';
-
-  // Components
   import Detail from './Detail/Detail.svelte';
   import Discovery from './Discovery/Discovery.svelte';
   import Hamburger from './Hamburger.svelte';
   import Logo from './Logo.svelte';
   import NavButton from './NavButton.svelte';
+
+  import { vehicles } from '../../data/vehicles.js';
+  import { navHovered, detailOpen, discoveryOpen, detailData } from '../../stores/navStore.js';
 </script>
 
 <nav
   class="nav"
+  class:hovered={$navHovered ? 'nav--hovered' : ''}
   on:mouseenter={() => navHovered.set(true)}
   on:mouseleave={() => {
-    navHovered.set(false);
+    $discoveryOpen ? navHovered.set(true) : navHovered.set(false);
     detailOpen.set(false);
-    discoveryOpen.set(false);
   }}
 >
   <div class="nav-container">
@@ -42,7 +36,6 @@
             on:hovered={() => {
               discoveryOpen.set(false);
               detailOpen.set(true);
-              console.log(`Hovered on vehicle: ${vehicle.title}`);
               detailData.set(vehicle);
             }}
           />
@@ -126,7 +119,7 @@
     justify-content: flex-end;
   }
 
-  .nav:hover {
+  .nav.hovered {
     background-color: var(--color-nav-bg-hover);
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
   }

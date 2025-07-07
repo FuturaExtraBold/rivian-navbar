@@ -1,6 +1,4 @@
 <script>
-  console.log('DiscoveryActions component loaded');
-
   import NavButton from '../NavButton.svelte';
 </script>
 
