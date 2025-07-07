@@ -24,11 +24,11 @@
   setContext('discoveryOpen', discoveryOpen);
 
   // Components
-  import Detail from './Detail.svelte';
-  import NavButton from './NavButton.svelte';
+  import Detail from './Detail/Detail.svelte';
+  import Discovery from './Discovery/Discovery.svelte';
   import Hamburger from './Hamburger.svelte';
   import Logo from './Logo.svelte';
-  import Discovery from '../Discovery/Discovery.svelte';
+  import NavButton from './NavButton.svelte';
 </script>
 
 <nav
