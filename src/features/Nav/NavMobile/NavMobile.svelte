@@ -32,6 +32,9 @@
       </div>
     {/if}
   </div>
+  {#if open}
+    <div class="divider"></div>
+  {/if}
   <div class="container">
     <div class="content">
       <div class="link-list">
@@ -81,8 +84,8 @@
 <style lang="scss">
   .nav {
     width: 100%;
-    margin: var(--spacing) auto 0;
-    border-radius: 20px;
+    margin: 0;
+    border-radius: 0;
     transition: all var(--animation-default);
     position: relative;
     overflow: hidden;
@@ -97,7 +100,7 @@
 
     .container {
       background-color: #fff;
-      height: calc(100vh - 104px);
+      height: calc(100vh - 64px);
       opacity: 1;
     }
   }
@@ -174,5 +177,16 @@
   .divider {
     margin: 0;
     border-top: var(--border-default);
+  }
+
+  @media (min-width: 1024px) {
+    .nav {
+      margin: var(--spacing) auto 0;
+      border-radius: 20px;
+    }
+
+    .container {
+      height: calc(100vh - 104px);
+    }
   }
 </style>

@@ -1,6 +1,11 @@
 <script>
   import { gsap } from 'gsap';
-  import { discoveryOpen, hamburgerHovered, navHovered } from '../../stores/navStore';
+  import {
+    discoveryOpen,
+    hamburgerHovered,
+    mobileNavOpen,
+    navHovered,
+  } from '../../stores/navStore';
 
   let hovered = $state(false);
   navHovered.subscribe((value) => (hovered = value));
@@ -10,7 +15,7 @@
   let bar1, bar2;
 
   export function animateBars() {
-    if ($discoveryOpen) {
+    if ($discoveryOpen || $mobileNavOpen) {
       gsap.to(bar1, {
         y: -3,
         rotation: 45,
@@ -43,6 +48,10 @@
     if (bar1 && bar2 && $discoveryOpen !== undefined) {
       animateBars();
     }
+
+    if (bar1 && bar2 && $mobileNavOpen !== undefined) {
+      animateBars();
+    }
   });
 
   function handleClick() {
@@ -65,7 +74,7 @@
   type="button"
   class="hamburger {className}"
   class:hovered
-  class:open={$discoveryOpen}
+  class:open={$discoveryOpen || $mobileNavOpen}
   onmouseenter={handleMouseEnter}
   onmouseleave={handleMouseLeave}
   onclick={handleClick}
@@ -97,13 +106,21 @@
     border-radius: 50%;
 
     &.hovered .bar {
-      background-color: var(--color-nav-hamburger-bg-hover);
+      background-color: #000;
     }
   }
 
   .hamburger--mobile {
     margin: 0;
     flex: none;
+
+    .bar {
+      background-color: #fff;
+    }
+  }
+
+  .hamburger.open .bar {
+    background-color: #000;
   }
 
   .hamburger:active {
@@ -125,7 +142,7 @@
   .bar {
     height: 2px;
     width: 100%;
-    background-color: white;
+    background-color: #fff;
     transform-origin: center center;
     position: absolute;
     transform: translateY(-50%);

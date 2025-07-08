@@ -3,10 +3,16 @@
   import Nav from './features/Nav/Nav.svelte';
   import NavMobile from './features/Nav/NavMobile/NavMobile.svelte';
   import Slides from './features/Slides.svelte';
-  import { discoveryOpen } from './stores/navStore';
+  import { discoveryOpen, mobileNavOpen } from './stores/navStore';
 
   import { windowSize } from './stores/windowStore';
   $: isMobile = $windowSize.width < 1200;
+
+  function handleResize() {
+    discoveryOpen.set(false);
+    mobileNavOpen.set(false);
+  }
+  window.addEventListener('resize', handleResize);
 </script>
 
 <main>
@@ -43,6 +49,12 @@
   }
 
   .container {
-    padding: 0 var(--spacing);
+    padding: 0;
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      padding: 0 var(--spacing);
+    }
   }
 </style>
