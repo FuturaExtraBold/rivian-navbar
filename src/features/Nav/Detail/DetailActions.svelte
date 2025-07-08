@@ -17,7 +17,7 @@
     <NavButton
       title={action.label}
       className="nav-button--full nav-button--light"
-      on:click={() => {
+      onclick={() => {
         console.log(`Action clicked: ${action.label}`);
       }}
     />

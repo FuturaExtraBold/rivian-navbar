@@ -26,7 +26,7 @@
       className="nav-button--full nav-button--light {$discoveryData.title === action.title
         ? 'nav-button--active'
         : ''}"
-      on:click={() =>
+      onclick={() =>
         discoveryData.set({
           title: action.title,
           features: action.features,

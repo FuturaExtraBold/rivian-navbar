@@ -14,6 +14,7 @@
   --break-xsmall: 600px;
   --break-small: 1024px;
   --break-medium: 1200px;
+  --font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
 *,
@@ -47,17 +48,4 @@ body {
 #app {
   margin: 0 auto;
   width: 100%;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
 }

@@ -2,11 +2,10 @@
   import { gsap } from 'gsap';
   import { discoveryOpen, hamburgerHovered, navHovered } from '../../stores/navStore';
 
-  let hovered = false;
+  let hovered = $state(false);
   navHovered.subscribe((value) => (hovered = value));
 
-  import { createEventDispatcher } from 'svelte';
-  const dispatch = createEventDispatcher();
+  let { onhovered, onclicked } = $props();
 
   let bar1, bar2;
 
@@ -40,21 +39,23 @@
     }
   }
 
-  $: if (bar1 && bar2 && $discoveryOpen !== undefined) {
-    animateBars();
-  }
+  $effect(() => {
+    if (bar1 && bar2 && $discoveryOpen !== undefined) {
+      animateBars();
+    }
+  });
 
   function handleClick() {
-    dispatch('clicked', true);
+    onclicked?.(true);
   }
 
   function handleMouseEnter() {
-    dispatch('hovered', true);
+    onhovered?.(true);
     hamburgerHovered.set(true);
   }
 
   function handleMouseLeave() {
-    dispatch('hovered', false);
+    onhovered?.(false);
     hamburgerHovered.set(false);
   }
 </script>
@@ -65,9 +66,9 @@
   class="hamburger"
   class:hovered
   class:open={$discoveryOpen}
-  on:mouseenter={handleMouseEnter}
-  on:mouseleave={handleMouseLeave}
-  on:click={handleClick}
+  onmouseenter={handleMouseEnter}
+  onmouseleave={handleMouseLeave}
+  onclick={handleClick}
 >
   <div class="bars">
     <div class="bar" bind:this={bar1}></div>

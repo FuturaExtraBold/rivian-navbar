@@ -1,38 +1,33 @@
 <script>
-  // @ts-nocheck
-
   import { navHovered } from '../../stores/navStore.js';
-  let hovered = false;
+  let hovered = $state(false);
   navHovered.subscribe((value) => (hovered = value));
 
-  // Is the button hovered?
-  import { createEventDispatcher } from 'svelte';
-  const dispatch = createEventDispatcher();
+  // Props
+  let { title = 'Button', className = '', onhovered = undefined, onclick = undefined } = $props();
 
   function handleMouseEnter() {
-    dispatch('hovered', true);
+    onhovered?.(true);
   }
 
   function handleMouseLeave() {
-    dispatch('hovered', false);
+    onhovered?.(false);
   }
 
-  // Props
-  export let title = 'Button';
-  export let className = '';
+  function handleClick() {
+    onclick?.();
+  }
 </script>
 
-<div
-  role="button"
-  tabindex="0"
+<button
   class="nav-button {className}"
   class:hovered
-  on:click
-  on:mouseenter={handleMouseEnter}
-  on:mouseleave={handleMouseLeave}
+  onclick={handleClick}
+  onmouseenter={handleMouseEnter}
+  onmouseleave={handleMouseLeave}
 >
   {title}
-</div>
+</button>
 
 <style lang="scss">
   :root {
@@ -59,8 +54,11 @@
     align-items: center;
     justify-content: center;
     font-weight: 600;
+    font-family: var(--font-family);
     border-radius: 40px;
     letter-spacing: -0.75px;
+    font-size: 1em;
+    border: none;
     cursor: pointer;
 
     &.hovered {

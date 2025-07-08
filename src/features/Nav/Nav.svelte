@@ -7,10 +7,6 @@
 
   import { vehicles } from '../../data/vehicles.js';
   import { navHovered, detailOpen, discoveryOpen, detailData } from '../../stores/navStore.js';
-
-  let kaboom = false;
-  discoveryOpen.subscribe((value) => (kaboom = value));
-  console.log('Discovery Open:', kaboom);
 </script>
 
 <nav
@@ -25,8 +21,8 @@
   <div class="nav-container">
     <div class="nav-section nav-section--vehicles">
       <Hamburger
-        on:hovered={() => detailOpen.set(false)}
-        on:clicked={() => discoveryOpen.update((open) => !open)}
+        onhovered={() => detailOpen.set(false)}
+        onclicked={() => discoveryOpen.update((open) => !open)}
       />
       <div
         class="nav-actions {$discoveryOpen ? 'nav-actions--hidden' : ''}"
@@ -37,7 +33,7 @@
           <NavButton
             className={vehicle.title === 'R3' ? 'nav-button--active' : ''}
             title={vehicle.title}
-            on:hovered={() => {
+            onhovered={() => {
               discoveryOpen.set(false);
               detailOpen.set(true);
               detailData.set(vehicle);
