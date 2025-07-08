@@ -45,6 +45,8 @@
     width: 280px;
     background-color: #fff;
     border-right: var(--border-default);
+    position: relative;
+    overflow-y: auto;
   }
 
   .divider {

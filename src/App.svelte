@@ -1,8 +1,12 @@
 <script>
   import Disclaimer from './features/Disclaimer.svelte';
   import Nav from './features/Nav/Nav.svelte';
+  import NavMobile from './features/NavMobile/NavMobile.svelte';
   import Slides from './features/Slides.svelte';
   import { discoveryOpen } from './stores/navStore';
+
+  import { windowSize } from './stores/windowStore';
+  $: isMobile = $windowSize.width < 1200;
 </script>
 
 <main>
@@ -16,7 +20,13 @@
       aria-label="overlay"
     ></button>
   {/if}
-  <Nav />
+  <div class="container">
+    {#if isMobile}
+      <NavMobile />
+    {:else}
+      <Nav />
+    {/if}
+  </div>
   <Disclaimer />
 </main>
 
@@ -30,5 +40,9 @@
     border: 0;
     background-color: transparent;
     z-index: 10;
+  }
+
+  .container {
+    padding: 0 var(--spacing);
   }
 </style>

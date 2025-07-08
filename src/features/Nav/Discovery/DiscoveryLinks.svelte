@@ -24,6 +24,8 @@
     width: 280px;
     background-color: #fff;
     border-left: var(--border-default);
+    position: relative;
+    overflow-y: auto;
   }
 
   .title {

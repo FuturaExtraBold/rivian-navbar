@@ -26,17 +26,14 @@
     position: relative;
     flex: 1;
     background-color: #f9f9f9;
+    text-align: center;
   }
 
   .background {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    overflow: hidden;
-    position: absolute;
+    @include fit;
     background-size: cover;
     background-position: center;
-    transition: transform 0.3s ease-out;
+    transition: transform var(--animation-default);
   }
 
   .container {
