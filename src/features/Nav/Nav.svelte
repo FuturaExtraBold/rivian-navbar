@@ -67,7 +67,7 @@
     max-width: 1920px;
     margin: var(--spacing) auto 0;
     border-radius: 20px;
-    transition: all 0.2s ease-in-out;
+    transition: all var(--animation-default);
     position: relative;
     overflow: hidden;
     z-index: 100;
@@ -96,7 +96,7 @@
     gap: 6px;
     position: relative;
     opacity: 1;
-    transition: opacity 0.2s ease-in-out;
+    transition: opacity var(--animation-default);
     pointer-events: all;
   }
 

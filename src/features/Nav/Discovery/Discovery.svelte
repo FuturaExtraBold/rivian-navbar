@@ -5,9 +5,8 @@
 
   import { discoveryData, discoveryOpen } from '../../../stores/navStore.js';
 
-  let open = false;
+  let open = $state($discoveryOpen);
   discoveryOpen.subscribe((value) => (open = value));
-  $: discoveryData;
 </script>
 
 <div class="discovery" class:open>
@@ -56,6 +55,6 @@
   .discovery.open {
     opacity: 1;
     height: calc(100vh - 120px);
-    transition: opacity 0.2s ease-in-out;
+    transition: opacity var(--animation-default);
   }
 </style>

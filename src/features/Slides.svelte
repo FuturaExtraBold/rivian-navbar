@@ -146,7 +146,7 @@
       height: 5px;
       border-radius: 50%;
       background-color: rgba(255, 255, 255, 0.1);
-      transition: background-color 0.2s ease-in-out;
+      transition: background-color var(--animation-default);
     }
 
     &__item.active {

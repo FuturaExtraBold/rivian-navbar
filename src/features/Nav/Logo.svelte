@@ -24,7 +24,7 @@
       color: var(--color-logo-text);
       letter-spacing: 8px;
       margin-right: -8px;
-      transition: all 0.2s ease-in-out;
+      transition: all var(--animation-default);
     }
 
     &.hovered h2 {

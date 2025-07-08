@@ -18,6 +18,7 @@
   --spacing-small: 12px;
   --spacing: 20px;
   --spacing-large: 40px;
+  --animation-default: 0.2s ease-in-out;
 }
 
 *,
