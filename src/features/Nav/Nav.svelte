@@ -70,7 +70,7 @@
     transition: all var(--animation-default);
     position: relative;
     overflow: hidden;
-    z-index: 100;
+    z-index: 1000;
   }
 
   .nav-container {

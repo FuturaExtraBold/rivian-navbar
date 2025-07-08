@@ -28,6 +28,7 @@
     position: relative;
     opacity: 0;
     transition: opacity var(--animation-default);
+    z-index: 1000;
 
     > * {
       margin: 0;

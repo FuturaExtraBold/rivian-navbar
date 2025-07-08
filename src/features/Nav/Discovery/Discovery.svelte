@@ -30,6 +30,7 @@
     padding: 0;
     height: 0;
     opacity: 0;
+    z-index: 1000;
 
     > * {
       margin: 0;

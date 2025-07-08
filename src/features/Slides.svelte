@@ -88,6 +88,7 @@
     display: block;
     overflow: hidden;
     @include slide-sizing;
+    z-index: 1;
   }
 
   .slides-overlay {
