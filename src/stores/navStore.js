@@ -15,3 +15,4 @@ export const discoveryData = writable({
 });
 export const hamburgerHovered = writable(false);
 export const navHovered = writable(false);
+export const mobileNavOpen = writable(false);

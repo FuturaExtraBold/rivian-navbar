@@ -1,24 +1,36 @@
 <script>
-  console.log('NavMobile component loaded');
   import Hamburger from '../Hamburger.svelte';
   import Logo from '../Logo.svelte';
   import NavButton from '../NavButton.svelte';
+
+  import { mobileNavOpen } from '../../../stores/navStore.js';
+
+  let open = $state($mobileNavOpen);
+  mobileNavOpen.subscribe((value) => (open = value));
+
+  function toggleMobileNav() {
+    mobileNavOpen.update((current) => !current);
+  }
 </script>
 
-<nav class="nav">
+<nav class="nav" class:open>
   <div class="header">
-    <Hamburger className="hamburger--mobile" onclicked={() => console.log('Hamburger clicked')} />
-    <Logo className="logo--mobile" />
-    <div class="actions">
-      <NavButton
-        title="Demo Drive"
-        className="nav-button--small-text nav-button--accent nav-button--fit-content"
-      />
-      <NavButton
-        title="Sign In"
-        className="nav-button--small-text nav-button--bordered nav-button--fit-content"
-      />
-    </div>
+    <Hamburger className="hamburger--mobile" onclicked={toggleMobileNav} />
+    {#if !open}
+      <Logo className="logo--mobile" />
+    {/if}
+    {#if open}
+      <div class="actions">
+        <NavButton
+          title="Demo Drive"
+          className="nav-button--small-text nav-button--accent nav-button--fit-content"
+        />
+        <NavButton
+          title="Sign In"
+          className="nav-button--small-text nav-button--bordered nav-button--fit-content"
+        />
+      </div>
+    {/if}
   </div>
   <div class="container">
     <div class="content">
@@ -46,10 +58,6 @@
           <span class="availability">1-12 week delivery</span>
         </a>
       </div>
-      <NavButton
-        title="Demo Drive"
-        className="nav-button--accent nav-button--small-text nav-button--fit-content"
-      />
     </div>
     <div class="divider"></div>
     <div class="content">
@@ -80,9 +88,18 @@
     overflow: hidden;
     z-index: 100;
     height: 100%;
-    background-color: #fff;
     display: flex;
     flex-direction: column;
+  }
+
+  .nav.open {
+    background-color: #fff;
+
+    .container {
+      background-color: #fff;
+      height: calc(100vh - 104px);
+      opacity: 1;
+    }
   }
 
   .header {
@@ -102,7 +119,10 @@
   }
 
   .container {
-    height: calc(100vh - 104px);
+    height: 0;
+    background-color: transparent;
+    opacity: 0;
+    transition: all var(--animation-default);
   }
 
   .content {
