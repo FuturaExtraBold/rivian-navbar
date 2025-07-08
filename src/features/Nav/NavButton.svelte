@@ -91,6 +91,15 @@
     height: 50px;
   }
 
+  .nav-button--fit-content {
+    width: fit-content;
+  }
+
+  .nav-button--bordered {
+    border: var(--border-default);
+    color: var(--color-button-active-text);
+  }
+
   .nav-button--light {
     font-weight: 500;
     letter-spacing: normal;

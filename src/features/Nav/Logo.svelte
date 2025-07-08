@@ -40,6 +40,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex: 2;
 
     .text {
       font-size: 1.4em;
