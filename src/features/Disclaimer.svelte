@@ -1,4 +1,8 @@
-<div class="disclaimer">
+<script>
+  let { className = '' } = $props();
+</script>
+
+<div class="disclaimer {className}">
   <span class="disclaimer-title">⚠️&nbsp;&nbsp;Disclaimer</span>
   <span>This is a personal project created for demonstration purposes.</span>
   <span>Nothing is offered for sale. Images and text are presentational.</span>
@@ -10,7 +14,8 @@
     position: fixed;
     bottom: var(--spacing);
     right: var(--spacing);
-    width: 500px;
+    max-width: 500px;
+    width: 100%;
     background-color: rgba(0, 0, 0, 0.8);
     color: #fff;
     padding: var(--spacing);
@@ -24,6 +29,11 @@
     > span {
       margin: 0;
     }
+  }
+
+  .disclaimer--mobile {
+    bottom: 0;
+    right: 0;
   }
 
   .disclaimer-title {

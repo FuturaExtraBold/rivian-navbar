@@ -1,7 +1,7 @@
 <script>
   import Disclaimer from './features/Disclaimer.svelte';
   import Nav from './features/Nav/Nav.svelte';
-  import NavMobile from './features/NavMobile/NavMobile.svelte';
+  import NavMobile from './features/Nav/NavMobile/NavMobile.svelte';
   import Slides from './features/Slides.svelte';
   import { discoveryOpen } from './stores/navStore';
 
@@ -27,7 +27,7 @@
       <Nav />
     {/if}
   </div>
-  <Disclaimer />
+  <Disclaimer className={isMobile ? 'disclaimer--mobile' : ''} />
 </main>
 
 <style lang="scss">

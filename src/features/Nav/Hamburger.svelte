@@ -5,7 +5,7 @@
   let hovered = $state(false);
   navHovered.subscribe((value) => (hovered = value));
 
-  let { onhovered, onclicked } = $props();
+  let { className = '', onhovered = () => {}, onclicked = () => {} } = $props();
 
   let bar1, bar2;
 
@@ -63,7 +63,7 @@
 <button
   aria-label="Toggle Discovery Menu"
   type="button"
-  class="hamburger"
+  class="hamburger {className}"
   class:hovered
   class:open={$discoveryOpen}
   onmouseenter={handleMouseEnter}
@@ -99,6 +99,11 @@
     &.hovered .bar {
       background-color: var(--color-nav-hamburger-bg-hover);
     }
+  }
+
+  .hamburger--mobile {
+    margin: 0;
+    flex: none;
   }
 
   .hamburger:active {

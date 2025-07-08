@@ -1,11 +1,14 @@
 <script>
   import { navHovered } from '../../stores/navStore';
-  let hovered = false;
+
+  let hovered = $state($navHovered);
   navHovered.subscribe((value) => (hovered = value));
+
+  let { className = '' } = $props();
 </script>
 
-<div class="nav-logo" class:hovered>
-  <h2>BENZO</h2>
+<div class="logo {className}" class:hovered>
+  <span class="text">BENZO</span>
 </div>
 
 <style lang="scss">
@@ -14,10 +17,10 @@
     --color-logo-text-hover: #000;
   }
 
-  .nav-logo {
+  .logo {
     cursor: pointer;
 
-    h2 {
+    .text {
       margin: 0;
       font-size: 1.7em;
       font-weight: 700;
@@ -27,8 +30,20 @@
       transition: all var(--animation-default);
     }
 
-    &.hovered h2 {
+    &.hovered .text {
       color: var(--color-logo-text-hover);
+    }
+  }
+
+  .logo--mobile {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .text {
+      font-size: 1.4em;
+      letter-spacing: 4px;
     }
   }
 </style>
