@@ -134,7 +134,7 @@
 
   .slide-progress {
     position: absolute;
-    bottom: 20px;
+    bottom: var(--spacing);
     left: 50%;
     transform: translateX(-50%);
     display: flex;

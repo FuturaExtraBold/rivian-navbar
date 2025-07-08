@@ -19,11 +19,11 @@
   .links {
     display: flex;
     flex-direction: column;
-    padding: 20px;
-    padding-right: 40px;
+    padding: var(--spacing);
+    padding-right: var(--spacing-large);
     width: 280px;
     background-color: #fff;
-    border-left: 1px solid #eee;
+    border-left: var(--border-default);
   }
 
   .title {

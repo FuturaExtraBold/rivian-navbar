@@ -28,7 +28,7 @@
   .actions {
     display: flex;
     flex-direction: column;
-    padding: 20px;
+    padding: var(--spacing);
     width: 400px;
     gap: 6px;
   }

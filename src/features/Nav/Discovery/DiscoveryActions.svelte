@@ -41,10 +41,10 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-    padding: 20px;
+    padding: var(--spacing);
     width: 280px;
     background-color: #fff;
-    border-right: 1px solid #eee;
+    border-right: var(--border-default);
   }
 
   .divider {

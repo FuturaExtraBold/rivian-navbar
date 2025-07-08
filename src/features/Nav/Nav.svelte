@@ -58,8 +58,6 @@
 
 <style lang="scss">
   :root {
-    --spacing-nav-gap-small: 6px;
-    --spacing-nav-gap-medium: 20px;
     --color-nav-bg: transparent;
     --color-nav-bg-hover: #fff;
   }
@@ -67,7 +65,7 @@
   .nav {
     width: 100%;
     max-width: 1920px;
-    margin: 20px auto 0;
+    margin: var(--spacing) auto 0;
     border-radius: 20px;
     transition: all 0.2s ease-in-out;
     position: relative;
@@ -81,8 +79,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: var(--spacing-nav-gap-medium);
-    padding: 0 20px;
+    gap: var(--spacing);
+    padding: 0 var(--spacing);
   }
 
   .nav-section {
@@ -95,7 +93,7 @@
   .nav-actions {
     display: flex;
     align-items: center;
-    gap: var(--spacing-nav-gap-small);
+    gap: 6px;
     position: relative;
     opacity: 1;
     transition: opacity 0.2s ease-in-out;

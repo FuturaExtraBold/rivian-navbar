@@ -8,12 +8,12 @@
 <style lang="scss">
   .disclaimer {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
+    bottom: var(--spacing);
+    right: var(--spacing);
     width: 500px;
     background-color: rgba(0, 0, 0, 0.8);
     color: #fff;
-    padding: 20px;
+    padding: var(--spacing);
     font-size: 0.9em;
     z-index: 200;
     pointer-events: none;

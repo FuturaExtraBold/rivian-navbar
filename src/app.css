@@ -10,11 +10,14 @@
 }
 
 :root {
-  --divider-color: #eee;
   --break-xsmall: 600px;
   --break-small: 1024px;
   --break-medium: 1200px;
   --font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --border-default: 1px solid #eee;
+  --spacing-small: 12px;
+  --spacing: 20px;
+  --spacing-large: 40px;
 }
 
 *,

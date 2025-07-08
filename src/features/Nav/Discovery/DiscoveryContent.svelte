@@ -24,17 +24,17 @@
     flex: 1;
     width: 100%;
     height: 100%;
-    padding: 20px;
+    padding: var(--spacing);
     background-color: #fff;
     flex-direction: column;
-    gap: 12px;
+    gap: var(--spacing-small);
   }
 
   .content-split {
     flex: 1;
     display: flex;
     flex-direction: row;
-    gap: 12px;
+    gap: var(--spacing-small);
     width: 100%;
   }
 </style>
